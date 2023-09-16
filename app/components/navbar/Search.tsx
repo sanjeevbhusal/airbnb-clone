@@ -18,6 +18,7 @@ export function Search() {
           </div>
         </div>
       </div>
+      {/* A different search bar when the screen size is reduced. */}
       <div className="md:hidden w-full">
         <div className="flex flex-row border-2 rounded-full items-center justify-between py-2 px-2">
           <div className="flex flex-row gap-1 items-center">
