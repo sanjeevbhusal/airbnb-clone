@@ -1,5 +1,5 @@
-import Image from "next/image";
+import { RegisterModal } from "./components/modals/RegisterModal";
 
 export default function Home() {
-  return <h1>Welcome to Airbnb</h1>;
+  return <RegisterModal />;
 }
