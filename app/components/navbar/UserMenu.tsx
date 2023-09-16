@@ -1,11 +1,22 @@
+"use client";
+
 import { BiMenu } from "react-icons/bi";
 import Image from "next/image";
+import { useState } from "react";
+import { MenuItem } from "./MenuItem";
 
 export function UserMenu() {
+  const [openMenu, setOpenMenu] = useState(false);
+
   return (
-    <div className="flex-row gap-4 items-center hidden md:flex">
+    <div className="flex-row gap-4 items-center hidden md:flex relative">
       <p className="font-bold text-sm">Airbnb your home</p>
-      <div className="flex flex-row gap-3 p-2 border border-gray-200 rounded-full items-center">
+      <div
+        className="flex flex-row gap-3 p-2 border border-gray-200 rounded-full items-center cursor-pointer"
+        onClick={() => {
+          setOpenMenu(!openMenu);
+        }}
+      >
         <div className="text-xl">
           <BiMenu />
         </div>
@@ -17,6 +28,13 @@ export function UserMenu() {
           className="rounded-full cursor-pointer"
         />
       </div>
+      {openMenu ? (
+        <div className="absolute right-0 top-[120%] w-48 border rounded-md shadow bg-white">
+          <MenuItem label="Sign up" isBold onClick={() => {}} />
+          <MenuItem label="Log in" onClick={() => {}} />
+          <MenuItem label="Help center" onClick={() => {}} />
+        </div>
+      ) : null}
     </div>
   );
 }
