@@ -84,7 +84,7 @@ export function RegisterModal() {
         outline
         label="Signup with Github"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn("github")}
       />
       {/* TODO: Implment Login with Facebook's Functionality */}
       <div className="hidden">

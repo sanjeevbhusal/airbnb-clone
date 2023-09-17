@@ -3,7 +3,7 @@ import { MdFilterAlt } from "react-icons/md";
 
 export function Search() {
   return (
-    <div className="w-full md:w-fit">
+    <div className="grow md:w-fit md:grow-0">
       <div className="md:flex hidden flex-row gap-1 border-2 rounded-full items-center py-2">
         <div className="border-gray-300 border-r px-4 text-sm font-bold cursor-pointer">
           Anywhere

@@ -14,11 +14,12 @@ import { BiLogoFacebookSquare } from "react-icons/bi";
 import { AiFillGithub } from "react-icons/ai";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function LoginModal() {
   const { isOpen, onClose, onOpen } = useLoginModal();
-
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -30,9 +31,25 @@ export function LoginModal() {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
     try {
-      await axios.post("/api/login", data);
-      toast.success("Login successfull!");
-      onClose();
+      // await axios.post("/api/login", data);
+      const response = await signIn("credentials", {
+        ...data,
+        redirect: false,
+      });
+
+      console.log(response);
+
+      if (response?.error === null) {
+        toast.success("Login successfull!");
+        onClose();
+        router.refresh();
+        return;
+      }
+
+      if (response?.error) {
+        toast.error(response.error);
+        return;
+      }
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
@@ -76,7 +93,7 @@ export function LoginModal() {
         outline
         label="Login with Github"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn("github")}
       />
       {/* TODO: Implment Login with Facebook's Functionality */}
       <div className="hidden">
