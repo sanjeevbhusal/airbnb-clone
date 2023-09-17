@@ -1,15 +1,14 @@
 "use client";
 
-import React from "react";
 import { create } from "zustand";
 
-interface RegiserModalStore {
+interface LoginModalStore {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 
-const useRegisterModal = create<RegiserModalStore>((set) => {
+const useLoginModal = create<LoginModalStore>((set) => {
   return {
     isOpen: false,
     onOpen: () => set({ isOpen: true }),
@@ -17,4 +16,4 @@ const useRegisterModal = create<RegiserModalStore>((set) => {
   };
 });
 
-export { useRegisterModal };
+export { useLoginModal };

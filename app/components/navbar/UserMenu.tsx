@@ -5,11 +5,13 @@ import Image from "next/image";
 import { createRef, useEffect, useState } from "react";
 import { MenuItem } from "./MenuItem";
 import { useRegisterModal } from "@/app/hooks/useRegisterModal";
+import { useLoginModal } from "@/app/hooks/useLoginModal";
 
 export function UserMenu() {
   const [openMenu, setOpenMenu] = useState(false);
   const menuItemRef = createRef<HTMLDivElement>();
-  const { onOpen } = useRegisterModal();
+  const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
 
   useEffect(() => {
     // If Menu Item is not in DOM, there is no need to add a Event listener.
@@ -57,8 +59,8 @@ export function UserMenu() {
           className="absolute right-0 top-[120%] w-48 border rounded-md shadow bg-white"
           ref={menuItemRef}
         >
-          <MenuItem label="Sign up" isBold onClick={onOpen} />
-          <MenuItem label="Log in" onClick={onOpen} />
+          <MenuItem label="Sign up" isBold onClick={registerModal.onOpen} />
+          <MenuItem label="Log in" onClick={loginModal.onOpen} />
           <MenuItem label="Help center" onClick={() => {}} />
         </div>
       ) : null}
