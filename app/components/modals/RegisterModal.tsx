@@ -14,9 +14,11 @@ import { BiLogoFacebookSquare } from "react-icons/bi";
 import { AiFillGithub } from "react-icons/ai";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import { useLoginModal } from "@/app/hooks/useLoginModal";
 
 export function RegisterModal() {
   const { isOpen, onClose, onOpen } = useRegisterModal();
+  const loginModal = useLoginModal();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -100,11 +102,15 @@ export function RegisterModal() {
         <span className="text-neutral-500 font-light">
           Already have an account?
         </span>
-        <Link href="/login">
-          <span className="text-neutral-800 cursor-pointer hover:underline font-light">
-            Login
-          </span>
-        </Link>
+        <span
+          className="text-neutral-800 cursor-pointer hover:underline font-light"
+          onClick={() => {
+            onClose();
+            loginModal.onOpen();
+          }}
+        >
+          Login
+        </span>
       </div>
     </div>
   );

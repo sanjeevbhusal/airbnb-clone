@@ -8,6 +8,7 @@ import { useRegisterModal } from "@/app/hooks/useRegisterModal";
 import { useLoginModal } from "@/app/hooks/useLoginModal";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
+import { Button } from "../Button";
 
 interface UserMenuProps {
   user: User | null;
@@ -42,7 +43,10 @@ export function UserMenu({ user }: UserMenuProps) {
 
   return (
     <div className="flex-row gap-4 items-center flex relative">
-      <p className="font-bold text-sm hidden md:block">Airbnb your home</p>
+      <p className="font-bold text-sm hidden md:block hover:bg-neutral-100 cursor-pointer p-3 rounded-full">
+        Airbnb your home
+      </p>
+
       <div
         className="flex flex-row gap-3 p-2 border border-gray-200 rounded-full items-center cursor-pointer"
         onClick={() => {

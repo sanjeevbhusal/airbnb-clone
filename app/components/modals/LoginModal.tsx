@@ -15,9 +15,11 @@ import { AiFillGithub } from "react-icons/ai";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useRegisterModal } from "@/app/hooks/useRegisterModal";
 
 export function LoginModal() {
   const { isOpen, onClose, onOpen } = useLoginModal();
+  const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -109,11 +111,15 @@ export function LoginModal() {
         <span className="text-neutral-500 font-light">
           Do not have an account?
         </span>
-        <Link href="/signup">
-          <span className="text-neutral-800 cursor-pointer hover:underline font-light">
-            Signup
-          </span>
-        </Link>
+        <span
+          className="text-neutral-800 cursor-pointer hover:underline font-light"
+          onClick={() => {
+            onClose();
+            registerModal.onOpen();
+          }}
+        >
+          Signup
+        </span>
       </div>
     </div>
   );

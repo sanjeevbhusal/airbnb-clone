@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function Logo() {
   return (
-    <>
+    <Link href="/">
       <Image
         alt="logo"
         height="100"
@@ -17,6 +18,6 @@ export function Logo() {
         src="/images/logo-small.png"
         className="hidden md:block lg:hidden"
       />
-    </>
+    </Link>
   );
 }
