@@ -13,6 +13,7 @@ import { FcGoogle } from "react-icons/fc";
 import { BiLogoFacebookSquare } from "react-icons/bi";
 import { AiFillGithub } from "react-icons/ai";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 export function RegisterModal() {
   const { isOpen, onClose, onOpen } = useRegisterModal();
@@ -31,6 +32,7 @@ export function RegisterModal() {
     try {
       await new Promise((res) => setTimeout(res, 2000));
       await axios.post("/api/register", data);
+      toast.success("Account created successfully!");
       onClose();
     } catch (error) {
       toast.error("Something went wrong.");
@@ -76,7 +78,7 @@ export function RegisterModal() {
         outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => signIn("google")}
       />
       <Button
         outline
