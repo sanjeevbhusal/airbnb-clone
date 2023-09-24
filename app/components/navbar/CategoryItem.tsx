@@ -1,5 +1,5 @@
 import { useRouter, useSearchParams } from "next/navigation";
-import { Category } from "./types";
+import { Category } from "../../types";
 
 interface CategoryItemProps {
   category: Category;

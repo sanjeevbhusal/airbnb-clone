@@ -9,6 +9,7 @@ import { useLoginModal } from "@/app/hooks/useLoginModal";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { Button } from "../Button";
+import { useRentModal } from "@/app/hooks/useRentModal";
 
 interface UserMenuProps {
   user: User | null;
@@ -19,6 +20,7 @@ export function UserMenu({ user }: UserMenuProps) {
   const menuItemRef = createRef<HTMLDivElement>();
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const rentModal = useRentModal();
 
   useEffect(() => {
     // If Menu Item is not in DOM, there is no need to add a Event listener.
@@ -41,9 +43,22 @@ export function UserMenu({ user }: UserMenuProps) {
     };
   }, [openMenu]);
 
+  const handleClick = () => {
+    if (!user) {
+      return loginModal.onOpen();
+    }
+
+    rentModal.onOpen();
+    // If user is not logged In, open the login modal.
+    // If use is logged in, Open the modal that lets user add their home to airbnb.
+  };
+
   return (
     <div className="flex-row gap-4 items-center flex relative">
-      <p className="font-bold text-sm hidden md:block hover:bg-neutral-100 cursor-pointer p-3 rounded-full">
+      <p
+        className="font-bold text-sm hidden md:block hover:bg-neutral-100 cursor-pointer p-3 rounded-full"
+        onClick={handleClick}
+      >
         Airbnb your home
       </p>
 
